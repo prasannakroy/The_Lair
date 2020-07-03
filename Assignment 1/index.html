@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Data-structure And Algorithms</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<h1>Shortest Path Algorithms for Graph</h1>
+	<div class="row">
+		<div class="col-lg-4 col-md-6 col-sm-12">
+			<section class="Dijkstra">
+				<h2>Dijkstra Algorithm</h2>
+				<p>
+					Dijkstra algorithm was designed by Dutch computer scientist <b>Edsger W. Dijkstra</b> in 1959. It is one of the most popular shortest path algorithms. This algorithm find shortest path to each node from a selected source node. It is a greedy aproach the visits all the nodes of graph simultaneously updating shortest path to all the nodes from one source node.<br>In Dijkstra initially all nodes are presumed to be on an infinite distance from the source and distance of source itself is considered 0. After that a simple traversal is done throught the graph, visiting all the nodes connected to current node and performing all possible relaxations in the process. Without any optimization and direct implementation this algorithm has a time complexity of <b>O(<i>n<sup>2</sup> + m</i>)</b> where <i>n</i> is number of vertices in graph and <i>m</i> is number of edges, however this complexity can be improved upto <b>O(<i>nlogn + m</i>)</b> by using priority queue. Priority queue prioritizes the outgoing edges with maximum scope for relaxation in path size hence improving the runtime of algorithm.<br>Dijkstra algorithm however is not the all perfect algorithm for path finding as it is not functionable with a graph containing negative weight cycle and is prone to error when applied with such a graph. It is because in presence of negative weight cycle the chain of relaxations will never stop and lead to infinite loop. Hence, for dealing with graphs containing negative wewigt cycles <b>Bellman-Ford</b> and <b>Floyd-Warshall</b> allgorithms are used.<br>Further reading about Dijkstra:<br>
+					<a href="https://cp-algorithms.com/graph/dijkstra.html" title="CP-Algorithms" target="_blank">CP-Algorithms - Dijkstra</a><br>
+					<a href="https://en.wikipedia.org/wiki/Dijkstra's_algorithm" title="Wikipedia" target="_blank">Wikepedia - Dijkstra</a><br>
+					<a href="https://brilliant.org/wiki/dijkstras-short-path-finder/" title="Brilliant.org" target="_blank">Brilliant.org - Dijkstra</a>
+				</p>
+			</section>
+		</div>
+		<div class="col-lg-4 col-md-6 col-sm-12">
+			<section class="Bellman-Ford">
+				<h2>Bellman-Ford Algorithm</h2>
+				<p>
+					This algorithm bears the name of two American scientists: <b>Richard Bellman</b> and <b>Lester Ford</b>. Ford invented this algorithm in 1956 during the study of another mathematical problem, which was reduced to subproblem of finding shortest path in graph. Bellman in 1958 published an article devoted specifically to the problem of finding the shortest path, and in this article he gave the present form of this algorithm.<br>Like Dijkstra this algorithm also finds shortest paths to all nodes from a selected source nodes. This algortihm also assumes initial distance to all the nodes to be infinity and distance to source 0. However unlike <b>Dijkstra</b> which updates the node based on there distances and connection to the current node this algorithm iterates through all the edges <i>n - 1</i> times doing possible relaxation in each iteration. Here <i>n</i> is number of nodes in the graph. Each iteration runs for m times where m is number for edges in the graph. Hence, time complexity of Bellman-Ford after maximum optimization also is <b>O(<i>n * m</i>)</b> which is slower than optimized Dijkstra. However Bellman-Ford algorithm is capable of identifying negative weight cycle in a graph. This algorithm assumes that no further relaxation in path weight should be possible after <i>n - 1</i> iterations and this can be proven mathematically until unless there is a negative weight cycle present in graph. Therefore completing <i>n - 1</i> iterations one more iteration is done and if even a single relaxation is done during this iteration it is found that the graph contains a negative weight cycle.<br>Further reading about Bellman-Ford: <br>
+					<a href="https://cp-algorithms.com/graph/bellman_ford.html" title="CP-Algorithms" target="_blank">CP-Algorithms - Bellman-Ford</a><br>
+					<a href="https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm" title="Wikipedia" target="_blank">Wikepedia - Bellman-Ford</a><br>
+					<a href="https://brilliant.org/wiki/bellman-ford-algorithm/" title="Brilliant.org" target="_blank">Brilliant.org - Bellman-Ford</a>
+				</p>
+			</section>
+		</div>
+		<div class="col-lg-4 col-md-12 col-sm-12">
+			<section class="Floyd-Warshall">
+				<h2>Floyd-Warshall Algorithm</h2>
+				<p>
+					This algorithm was been simultaneously published in articles by <b>Robert Floyd</b> and <b>Stephen Warshall</b> in 1962. However, in 1959, <b>Bernard Roy</b> published essentially the same algorithm, but its publication went unnoticed.<br>Unlike <b>Dijkstra</b> and <b>Bellman-Ford</b> this algorithm finds shortest path between all pair of edges <i>i</i> and <i>j</i> for a given graph. This algorithm can also be used to determine negative weight cycle in which case the shortest path doesn't exist. Unlike previous two algorithms this algorithm isn't a greedy approach and is actually a Dynamic Programming solution hence a basic intution of Dynamic Programming is necessary for understanding this algorithm. The Floyd–Warshall algorithm compares all possible paths through the graph between each pair of vertices. It is able to do this with <b>&Theta;(<i>|V|<sup>3</sup></i>)</b> comparisons in a graph, even though there may be up to <b>&Omega;(<i>|V|<sup>2</sup></i>)</b> edges in the graph, and every combination of edges is tested. This leads to the worst case complexity of <b>O(<i>|V|<sup>3</sup></i>)</b>.It does so by incrementally improving an estimate on the shortest path between two vertices, until the estimate is optimal.<br>Consider a graph <b>G</b> with vertices <b>V</b> numbered 1 through <b>N</b>. Further consider a function <b>shortestPath(i, j, k)</b> that returns the shortest possible path from <i>i</i> to <i>j</i> using vertices only from the set <b>{1, 2, .. k - 1}</b> as intermediate points along the way. If we include node k also in our list there are two possibilities : i) The older path that didn't include k is smaller, or ii) Including k leads to a shorter path, therefore path that includes k can be divided into two parts, <b>shortestPath(i, k, k - 1)</b> and <b>shortestPath(k, j, k - 1)</b>. This computation can be done recursively using dynamic programming. This algorithm can be also used to determine negative weight cycles in graph.<br>Further reading about Floyd-Warshall: <br>
+					<a href="https://cp-algorithms.com/graph/all-pair-shortest-path-floyd-warshall.html" title="CP-Algorithms" target="_blank">CP-Algorithms - Floyd-Warshall</a><br>
+					<a href="https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm" title="Wikipedia" target="_blank">Wikepedia - Floyd-Warshall</a><br>
+					<a href="https://brilliant.org/wiki/floyd-warshall-algorithm/" title="Brilliant.org" target="_blank">Brilliant.org - Floyd-Warshall</a>
+				</p>	
+			</section>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+p {
+	color :  red;
+	font-size: 15px;
+	width: 320px;
+	background-color: cyan;
+	padding: 10px 10px 10px 10px;
+	border: 5px solid red;
+	border-collapse: separate;
+}
+
+/*pseudo-class selectors*/
+
